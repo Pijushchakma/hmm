@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sign-In to NDF || NDF{% endblock %}
+{% block content %}
+
+    <div class="header-height"></div>
+        
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-content">
+                <h2>Sign-In to NDF</h2>
+                <ol class="breadcrumb">
+                    <li {% if index_section %} class="breadcrumb-item" {% endif %}> <a href="{% url 'Index' %}">Home</a></li>
+                    <li class="breadcrumb-item active"> &nbsp; Sign-In</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /Page Header -->
+
+    <section class="about-section bg-grey bd-bottom padding">
+        <div class="container">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+            <form action="{% url 'Sign-In NDF' %}" method="POST">
+                {% csrf_token %}
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-2">
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                               <label for="email" style="font-weight: bold;">Email ID</label>
+                               <input type="email" class="form-control" required id="email" name="email" placeholder="Enter Email ID">
+                            </div>
+                       </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                               <label for="password" style="font-weight: bold;">Password</label>
+                               <input type="password" name="password" id="password" class="form-control" required placeholder="Enter Password">
+                            </div>
+                       </div>
+                    </div>
+
+                    <div class="col-lg-12 text-center">
+                        <div class="form-group">
+                           <input type="submit" name="submit" class="default-btn" value="Submit">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 text-center">
+                        <div class="form-group">
+                           <a href="{% url 'Join NDF' %}">Sign Up</a> /
+                            <a href="{% url 'reset_password' %}">Forgot Password ?</a> 
+                        </div>
+                   </div>
+
+                </div>
+            </form>
+        </div>
+    </section><!-- /About Section -->
+    
+{% endblock %}

@@ -1,0 +1,183 @@
+{% extends 'dashboard/base.html' %} {% load static %} {% block title %}Update Profile || NDF{% endblock %} {% block content %}
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fa fa-plus-circle icon-gradient bg-plum-plate">
+                        </i>
+                </div>
+                <div>Update Profile
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <h5 class="card-title" style="color: #ff0000;">Annual Membership Fees: ${{ fee }}</h5>
+            <h5 class="card-title">Profile</h5>
+            <form id="signupForm" class="col-md-10 mx-auto" method="post" enctype="multipart/form-data" action="{% url 'Profile' %}" data-states-url="{% url 'ajax_load_states' %}" data-cities-url="{% url 'ajax_load_cities' %}">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="first_name">First Name *</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="last_name">Last Name *</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="name">Street Address (Required)</label>
+                            <input type="text" id="address1" class="form-control" name="street_address" placeholder="Enter Address1">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="name">Street Address (Optional)</label>
+                            <input type="text" id="address2" class="form-control" placeholder="Enter Address2">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="name">Postal Code </label>
+                            <input type="text" id="postal_code" class="form-control" name="postal_code" placeholder="Enter Postal Code">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                        <label for="country">Country</label>
+                        <select class="custom-select" id="country" name="country">
+                                <option value="">Select Country</option>
+                                {% for country in countries %}
+                                    <option value="{{ country.id }}">{{ country.name }} </option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                        <label for="state">State / Province</label>
+                        <select class="custom-select" id="state" name="state">
+                                <option value="">Select State</option>
+                            </select>
+                    </div>
+                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                        <label for="city">City</label>
+                        <select class="custom-select" id="city" name="city">
+                                <option value="">Select City</option>
+                            </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" value="{{user.email}}" />
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="dob">Date Of Birth</label>
+                            <input type="date" id="dob" class="form-control" name="dob" placeholder="Enter Date of Birth">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="name">Phone </label>
+                            <!-- <div class="row">
+                                    <div class="col-lg-4">
+                                        <select name="" id="" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter Phone">
+                                    </div>
+                                    
+                                </div> -->
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                        <label for="professional">Professional Group</label>
+                        <select class="form-control" name="professional">
+                                <option value="">-None-</option>
+                                {% for group in groups %}
+                                <option value="{{ chapter }}">{{ chapter}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                        <label for="profession">Profession</label>
+                        <select class="form-control" name="profession">
+                                <option value="-1">-None-</option>
+                                <option value="-1">Self Employed</option>
+                            </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6" style="margin-bottom: 10px;">
+                        <label for="photo">Photo</label>
+                        <input type="file" name="image" id="" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#country").change(function() {
+        var url = $("#signupForm").attr("data-states-url");
+        var countryId = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'country': countryId
+            },
+            success: function(data) {
+                $("#state").html(data);
+            }
+        });
+
+    });
+
+    $("#state").change(function() {
+        var url = $("#signupForm").attr("data-cities-url");
+        var stateId = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'state': stateId
+            },
+            success: function(data) {
+                $("#city").html(data);
+            }
+        });
+
+    });
+</script>
+{% endblock %}

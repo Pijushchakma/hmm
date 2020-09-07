@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Create Local Chapter || NDF{% endblock %}
+{% block content %}
+    <div class="header-height"></div>
+            
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-title text-center">
+                <h2>NDF CHAPTER</h2>
+            </div>
+                <div class="breadcrumb-area text-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item" {% if index_section %} class="active" {% endif %}><a href="{% url 'Index' %}">Home</a></li>
+                        <li class="breadcrumb-item active">NDF Chapter</li>
+                    </ol>
+                </div>
+                
+            
+        </div>
+    </div><!-- /Page Header -->
+
+    <section class="about-section bg-grey bd-bottom padding">
+        <div class="container">
+            <div class="row about-wrap">
+                
+                <div class="col-md-12 xs-padding">
+                    <div class="about-content text-justify">
+                        <p>NDF Chapter is created to foster interaction and unity among Nigerians within a community or geographical zone. It enables every Nigerian within the chapter to participate actively in building a united and prosperous nation. Chapter generates ideas. Chapter can sponsor petition on a specific issue affecting a community, state or our nation in general. Chapter or individual within a Chapter can raise a commendation for an individual, government agencies or organization.</p>
+                        <p>Every member of NDF is expected to belong to a chapter. On registration, member is normally assigned to the National Chapter of the country of residence. However, member to change to another chapter closer to them from the National Chapter without any restriction or penalty.</p>
+                        <p>Chapter has a President, Vice President, Secretary, Membership Officer, Public Relation Officer, Treasurer, Legal Officer, and Welfare Officer all depending on the size of the chapter. It is the responsible of the chapter to ensure welfare of members and escalate issue of urgent attention to the City, State or Country level for appropriate action.</p>
+                        <p>The National rebuilding process requires innovative ideas and opinions that will assist Nigeria.</p>
+                        <h4>How To Start A Chapter?</h4>
+                        <p>Any registered member of NDF can start a chapter within a community, state or nation anywhere in the world. However, chapter’s approval is based on many factors, there is a minimum number of Nigerians required to form a Chapter, and the number varies from country to country. Members are also expected to pay annual membership fees which also varies from country to country. </p>
+                        <p>Note:</p>
+                        <p>1.) Primary contact must be a verified member of NDF </p>
+                        <p>2.) Check for the minimum of Nigerians required to form a Chapter in your country of residence and the annual membership fees. All membership registration is made online using NDF global platform, <a href="https://www.ndf.ng">www.ndf.ng</a></p>
+                        <p>3.) At least four (4) Officers President, Secretary, Membership Officer and Treasurer are required to Start a Chapter. Other Officer such as Vice-President, Public Relation Officer, Welfare Officer and Legal Officer may be included later. Chapter may also have Boards of Directors, Board of Advisors and Bye-law depending on the size of the chapter.</p>
+                        <p>4.) NDF chapter can be located anywhere in the world but generally not within the same locality. Application to start a chapter will, normally be treated within three (3) weeks.</p>
+                        <p>5.) Approved Chapter becomes available on the global platform with a link to the full website created for the Chapter.</p>
+                        <p>6.) Chapter level is determined by NDF project support category; therefore, there are basic, bronze, silver, gold, platinum and diamond chapter categories.</p>
+                        <p>7.) Chapter promoter can purchase membership voucher in bulk at the user dashboard and</p>
+                        <p>8.) Log into your user Dashboard, click on Start A Chapter link.</p>
+                        <p>Log In <a href="{% url 'Sign-In NDF' %}">Here</a> To start a Chapter Application Now</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /About Section -->
+
+{% endblock %}

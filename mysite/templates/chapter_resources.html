@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Chapter Resources || NDF{% endblock %}
+{% block content %}
+    <div class="header-height"></div>
+            
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-title text-center">
+                <h2>CHAPTER RESOURCES</h2>
+            </div>
+                <div class="breadcrumb-area text-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item" {% if index_section %} class="active" {% endif %}><a href="{% url 'Index' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Chapter Resources</li>
+                    </ol>
+                </div>
+                
+            
+        </div>
+    </div><!-- /Page Header -->
+
+    <section class="about-section bg-grey bd-bottom padding">
+        <div class="container">
+            <div class="row about-wrap">
+                
+                <div class="col-md-12 xs-padding">
+                    <div class="about-content text-justify">
+                        <p>Welcome to NDF Chapter resources center. Here you will find relevant information and resources to help your NDF chapter maximize its impact and effectiveness.</p>
+                        <select name="country" id="country" class="form-control" onchange="listChapters()"
+                            <option value="">Select Country</option>
+                            {% for country in countries %}
+                            <option value="{{ country.name }}">{{ country.name }} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /About Section -->
+
+{% endblock %}

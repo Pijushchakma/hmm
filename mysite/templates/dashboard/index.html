@@ -1,0 +1,104 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}User Dashboard || NDF{% endblock %}
+{% block content %}
+    {% if msg %}
+
+        <script>
+        alert("{{ msg }}");
+        </script>
+
+    {% endif %}
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="fa fa-dashboard icon-gradient bg-plum-plate">
+                        </i>
+                    </div>
+                    <div>User Dashboard
+                        <div class="page-title-subheading">Welcome back {{ user.username }},
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </div>            
+        <div class="">
+            <div class="row">
+                <div class="col-lg-6 col-xl-4">
+                    <div class="card mb-3 widget-content">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="widget-heading"><a href="{% url 'Profile' %}">View Profile</a></div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-success fa fa-user"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-4">
+                    <div class="card mb-3 widget-content">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="widget-heading"><a href="{% url 'Purchase Vouchers' %}">Vouchers</a> </div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-primary fa fa-money"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-4">
+                    <div class="card mb-3 widget-content">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="widget-heading"><a href="{% url 'Invite Friends' %}">Invite Friends</a></div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-warning fa fa-users"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-4">
+                    <div class="card mb-3 widget-content">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="widget-heading"><a href="{% url 'Create Chapter' %}">Start A Chapter</a></div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-danger fa fa-plus-circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-4">
+                    <div class="card mb-3 widget-content">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="widget-heading"><a href="{% url 'endorse_member' %}">Endorse Member</a></div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-success fa fa-plus-circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-4">
+                    <div class="card mb-3 widget-content">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="widget-heading"><a href="{% url 'Make Donations' %}">My Donations</a> </div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-primary fa fa-money"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

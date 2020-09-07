@@ -1,0 +1,331 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if msg %}
+
+<script>
+    alert("{{ msg }}");
+</script>
+
+{% endif %}
+<div class="header-height"></div>
+
+<section class="slider-section">
+    <div class="slider-wrapper">
+        {% for slide in slides %}
+        <div id="main-slider" class="nivoSlider">
+            <img src="{{slide.img.url}}" alt="" title="#slider-caption" />
+        </div><!-- /#main-slider -->
+
+        <div id="slider-caption" class="nivo-html-caption slider-caption">
+            <div class="display-table">
+                <div class="table-cell">
+                    <div class="container">
+                        <div class="slider-text">
+                            <h5 class="wow cssanimation fadeInBottom">{{slide.sub_title}}</h5>
+                            <h1 class="wow cssanimation leFadeInRight sequence">{{slide.title}}</h1>
+                            <p class="wow cssanimation fadeInTop" data-wow-delay="1s">{{slide.desc}}</p>
+                            <a href="{{ban.left_Button_Link}}" class="default-btn wow cssanimation fadeInBottom"
+                                data-wow-delay="0.8s">{{slide.left_Button_Name}}</a>
+                            <a href="{{ban.right_Button_Link}}" class="default-btn wow cssanimation fadeInBottom"
+                                data-wow-delay="0.8s">{{slide.right_Button_Name}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /#slider-caption-1 -->
+        {% endfor %}
+    </div>
+</section><!-- /#slider-Section -->
+
+<section class="promo-section-2 padding bd-bottom">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 xs-padding">
+                <div class="promo-content">
+                    <div class="iconz">
+                        <i class="fa fa-bullseye"></i>
+                    </div>
+                    <div class="iconz_stat">
+                        <h3>Mission Statement</h3>
+                        <p style="text-align: justify;">Harnessing Nigerians global pool of knowledge and wealth for
+                            national development and attainment of good governance, accountability and the rule of law
+                            in a society devoid of tribal, ethnic and religious hinderances.</p>
+                        <a href="#">Read More</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 xs-padding">
+                <div class="promo-content">
+                    <div class="iconz">
+                        <i class="fa fa-eye"></i>
+                    </div>
+                    <div class="iconz_stat">
+                        <h3>Vision</h3>
+                        <p style="text-align: justify;">To become a vehicle for social, economic and political
+                            liberation of the Nigerian masses.</p>
+                        <a href="#">Read More</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 xs-padding">
+                <div class="promo-content">
+                    <div class="iconz">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    <div class="iconz_stat">
+                        <h3>Our Values</h3>
+                        <p style="text-align: justify;">NDF is governed by determination to unite Nigerians globally;
+                            breaking religious, ethnic and tribal barrier for a common goal of national re-building,
+                            good governance, fairness, equity and the rule of law .</p>
+                        <a href="#">Read More</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- /Promo Section -->
+
+<section class="campaigns-section bd-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 xs-padding">
+                <div class="campaigns-wrap">
+                    <h2 style="color: #000; text-align: center;">ABOUT <span style="color: #0aaaa0;">US</span></h2>
+                    <center><img src="{% static 'mysite/img/title-bottom.png' %}" alt=""></center>
+                    <p style="color: #000; text-align: justify;">We aim to accomplish these goals by harnessing the
+                        global pool of Nigerians skills and resources toward world-class education, medical services,
+                        energy and power solution, mechanized farming, versatile transportation system, robust financial
+                        services, improved security and rule of law, improved governance and judiciary, among others
+                        whilst deploying modern-day information technology tools to solving national challenges.</p>
+                    <p style="color: #000; text-align:justify">NDF represents a civil re-orientation of the populace for
+                        economic empowerment, political advancement, rule of law and good governance for visible and
+                        sustainable development in a society free of religious, ethical and tribal hinderances.</p>
+                    <a href="#" class="default-btn">Read more</a>
+                </div>
+            </div>
+            <div class="col-md-6 xs-padding">
+                <div class="video-wrap">
+                    <img src="{% static 'mysite/img/ndf_about.jpg' %}" alt="video">
+                    <div class="play">
+                        <a class="img-popup" data-autoplay="true" data-vbtype="video"
+                            href="https://www.youtube.com/watch?v=_IlLwfC2dNc"><i class="ti-control-play"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- /Featured Campaigns Section -->
+
+<section class="causes-section bg-grey bd-bottom padding">
+    <div class="container" style="margin-bottom: 20px;">
+        <div class="section-heading text-center mb-40">
+            <h2>OUR <span style="color: #0aaaa0;">GOALS</span></h2>
+            <center><img src="{% static 'mysite/img/title-bottom.png' %}" alt=""></center>
+            <p>On a Mission to rebuild.</p>
+        </div><!-- /Section Heading -->
+        <div class="causes-wrap row">
+            <div class="col-md-4 xs-padding">
+                <div class="causes-content">
+                    <div class="causes-thumb">
+                        <img src="{% static 'mysite/img/unity.jpg' %}" alt="causes">
+
+                    </div>
+                    <div class="causes-details" style="padding-bottom: 40px;">
+                        <h3 class="text-center">UNITY</h3>
+                        <p class="text-justify">To promote the global unification of Nigerians irrespective of location,
+                            tribe or religious affiliations with the sole aim of working collaboratively to build and
+                            create a new Nigeria.</p>
+
+                    </div>
+                </div>
+            </div><!-- /Causes-1 -->
+            <div class="col-md-4 xs-padding">
+                <div class="causes-content">
+                    <div class="causes-thumb">
+                        <img src="{% static 'mysite/img/education.jpg' %}" alt="causes">
+
+
+                    </div>
+                    <div class="causes-details" style="padding-bottom: 40px;">
+                        <h3 class="text-center">QUALITY EDUCATION</h3>
+                        <p class="text-justify">To establish, promote and advocate for substantial investment in quality
+                            educational services as a means of poverty eradication, political, social and economic
+                            advancement.&nbsp;</p>
+
+                    </div>
+                </div>
+            </div><!-- /Causes-2 -->
+            <div class="col-md-4 xs-padding">
+                <div class="causes-content">
+                    <div class="causes-thumb">
+                        <img src="{% static 'mysite/img/voice.jpg' %}" alt="causes">
+
+
+                    </div>
+                    <div class="causes-details">
+                        <h3 class="text-center">VOICEITOUT</h3>
+                        <p class="text-justify">To create and support platforms that will enable Nigerians raise
+                            petitions or commendations concerning issues bothering on good governance, social justice,
+                            rule of law and accountability.</p>
+
+                    </div>
+                </div>
+            </div><!-- /Causes-3 -->
+
+
+        </div>
+
+    </div>
+    <div class="container">
+
+        <div class="causes-wrap row">
+            <div class="col-md-4 xs-padding">
+                <div class="causes-content">
+                    <div class="causes-thumb">
+                        <img src="{% static 'mysite/img/medical.jpg' %}" alt="causes">
+
+                    </div>
+                    <div class="causes-details">
+                        <h3 class="text-center">MEDICAL</h3>
+                        <p class="text-justify">To promote, establish and support projects that will enhance the quality
+                            of health delivery services across Nigeria.</p>
+
+                    </div>
+                </div>
+            </div><!-- /Causes-1 -->
+            <div class="col-md-4 xs-padding">
+                <div class="causes-content">
+                    <div class="causes-thumb">
+                        <img src="{% static 'mysite/img/good.jpg' %}" alt="causes">
+
+
+                    </div>
+                    <div class="causes-details">
+                        <h3 class="text-center">GOOD GOVERNANCE</h3>
+                        <p class="text-justify">To create and support platforms that will enhance good governance, rule
+                            of law and accountability.</p>
+
+                    </div>
+                </div>
+            </div><!-- /Causes-2 -->
+            <div class="col-md-4 xs-padding">
+                <div class="causes-content">
+                    <div class="causes-thumb">
+                        <img src="{% static 'mysite/img/pacesetter.jpg' %}" alt="causes">
+
+
+                    </div>
+                    <div class="causes-details" style="padding-bottom: 40px;">
+                        <h3 class="text-center">ELECTION EYE</h3>
+                        <p class="text-justify">To create and support platform that will enhance the credibility of our
+                            electioneering process..</p>
+
+                    </div>
+                </div>
+            </div><!-- /Causes-3 -->
+
+
+        </div>
+
+    </div>
+</section><!-- /Causes Section -->
+
+
+<section class="events-section bg-grey bd-bottom padding">
+    <div class="container">
+        <div class="section-heading text-center mb-40">
+            <h2>OUR <span style="color: #0aaaa0;">PROJECTS</span></h2>
+            <center><img src="{% static 'mysite/img/title-bottom.png' %}" alt=""></center>
+            <p>We create events aiming to pear to the voice for children and gather for support.<br> Please update with
+                our events and confirm you presence.</p>
+        </div><!-- /Section Heading -->
+        <div id="event-carousel" class="events-wrap owl-Carousel">
+            {% for obj in objs %}
+            <div class="events-item">
+
+                <div class="event-thumb">
+                    <img src="{{obj.img.url}}" alt="events">
+                </div>
+                <div class="event-details">
+                    <div style="overflow: hidden;text-overflow: ellipsis;height: 198px;text-align:justify">
+                        <h3>{{obj.title}}</h3>
+
+                        <p style="text-align: justify;">{{obj.desc|safe}}</p>
+                    </div>
+
+                    <a href="project_detail/{{obj.id}}" class="default-btn">Read More</a>
+                </div>
+
+            </div><!-- Event-1 -->
+            {% endfor %}
+        </div>
+    </div>
+</section><!-- Events Section -->
+
+<section class="about-section bd-bottom padding">
+    <div class="container">
+        <div class="section-heading text-center mb-40">
+            <h2>OUR <span style="color: #0aaaa0;">TEAM</span></h2>
+            <center><img src="{% static 'mysite/img/title-bottom.png' %}" alt=""></center>
+            <p>We create events aiming to pear to the voice for children and gather for support.<br> Please update with
+                our events and confirm you presence.</p>
+        </div><!-- /Section Heading -->
+        <div class="row">
+            {% for team in teams %}
+            <div class="col-md-4 xs-padding">
+                <div class="profile-wrap">
+                    <img class="profile" src="{{team.img.url}}" alt="profile">
+                    <h3>{{team.firstname}} {{team.lastname}} <span>{{team.designation}}</span></h3>
+                    <p>
+                        <a href="{{team.fb}}"><i class="fa fa-facebook"></i></a>
+                        <a href="{{team.tw}}"><i class="fa fa-twitter"></i></a>
+                        <a href="{{team.go}}"><i class="fa fa-google"></i></a>
+                    </p>
+                    <a href="team_detail/{{team.id}}" class="default-btn">Read More</a>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section><!-- /Causes Section -->
+
+
+<div class="sponsor-section bd-bottom">
+    <div class="container">
+        <ul id="sponsor-carousel" class="sponsor-items owl-carousel">
+            <li class="sponsor-item">
+                <img src="{% static 'mysite/img/sponsor-1.png' %}" alt="sponsor-image">
+            </li>
+            <li class="sponsor-item">
+                <img src="{% static 'mysite/img/sponsor-2.png' %}" alt="sponsor-image">
+            </li>
+            <li class="sponsor-item">
+                <img src="{% static 'mysite/img/sponsor-3.png' %}" alt="sponsor-image">
+            </li>
+            <li class="sponsor-item">
+                <img src="{% static 'mysite/img/sponsor-4.png' %}" alt="sponsor-image">
+            </li>
+            <li class="sponsor-item">
+                <img src="{% static 'mysite/img/sponsor-5.png' %}" alt="sponsor-image">
+            </li>
+            <li class="sponsor-item">
+                <img src="{% static 'mysite/img/sponsor-6.png' %}" alt="sponsor-image">
+            </li>
+            <li class="sponsor-item">
+                <img src="{% static 'mysite/img/sponsor-7.png' %}" alt="sponsor-image">
+            </li>
+            <li class="sponsor-item">
+                <img src="{% static 'mysite/img/sponsor-8.png' %}" alt="sponsor-image">
+            </li>
+        </ul>
+    </div>
+</div><!-- ./Sponsor Section -->
+
+
+{% endblock %}

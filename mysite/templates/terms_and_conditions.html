@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Terms and Conditions || NDF{% endblock %}
+{% block content %}
+    <div class="header-height"></div>
+            
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-title text-center">
+                <h2>NDF CHAPTER</h2>
+            </div>
+                <div class="breadcrumb-area text-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item" {% if index_section %} class="active" {% endif %}><a href="{% url 'Index' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Terms and Conditions</li>
+                    </ol>
+                </div>
+                
+            
+        </div>
+    </div><!-- /Page Header -->
+
+    <section class="about-section bg-grey bd-bottom padding">
+        <div class="container">
+            <div class="row about-wrap">
+                
+                <div class="col-md-12 xs-padding">
+                    <div class="about-content text-justify">
+                        <h4 style="color: #000000;">NDF IDEAOLOGY & CREED</h4>
+                        <p>1. I am a Nigerian, married to a Nigerian or related to a Nigerian. </p>
+                        <p>2. I love Nigeria and want peace and progress of our Nation.</p>
+                        <p>3. I believe that a New Nigeria will emerge and that there is HOPE for our country.</p>
+                        <p>4. I am prepared to collaborate with others in building our Nation, utilizing my professional competencies and knowledge to contribute to her progress.</p>
+                        <p>5. I will support activities and programs that will uplift Nigeria.</p>
+                        <p>6. I will always uphold the integrity and unity of our Nation, not engaging in religious, tribal or ethnic conflicts.</p>
+                        <p>7. I will not engage in any destructive act that will further damage the image of Nigeria.</p>
+                        <p>8. I will vote honest Nigerians, encourage others to do likewise and I will serve honestly in whatever capacity I am elected to serve.</p>
+                        <p>9. I am prepared to be a Nation Builder.</p>
+                        <p>10. I will always love fellow Nigerians and people from other nations of world.</p>
+                        <h6 style="color: #000000;">“Together, we shall rebuild our Nation”, So help me God.</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /About Section -->
+
+{% endblock %}

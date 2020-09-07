@@ -1,0 +1,129 @@
+{% extends 'dashboard/base.html' %} {% load static %} {% block title %}Invite Friends || NDF{% endblock %}
+{% block content %}
+<style>
+    .pop-up {
+        color: red;
+        animation: pop-up 1s ease;
+        -webkit-animation: pop-up 1.5s ease;
+        text-align: center;
+        position: absolute;
+        z-index: 3;
+        top: 30%;
+        right: 6%;
+        width: 70%;
+        height: 50rem;
+        font-size: 2rem;
+        align-items: center;
+       
+    }
+    .main-card{
+        height: 20rem;
+    }
+    button{
+        height: auto;
+    }
+
+    @keyframes pop-up {
+        from {
+            transform: scale(0)
+        }
+
+        80% {
+            transform: scale(1.2)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    @-webkit-keyframes pop-up {
+        from {
+            -webkit-transform: scale(0)
+        }
+
+        80% {
+            -webkit-transform: scale(1.2)
+        }
+
+        to {
+            -webkit-transform: scale(1)
+        }
+    }
+
+    .hmm {
+        position: absolute;
+        width: 100%;
+    }
+</style>
+{% if msg %}
+<div class="pop-up">
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <p class="msg">The User Already Exist</p>
+            <button class="erase">ok</button>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="hmm">
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="fa fa-plus-circle icon-gradient bg-plum-plate">
+                        </i>
+                    </div>
+                    <div>Invite Friends
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Invite Friends</h5>
+                <form id="signupForm" class="col-md-10 mx-auto" method="post" action="{% url 'Invite Friends' %}"
+                    aria-placeholder="hello">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="email">Email ID</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder=" Enter Email ID " multiple />
+                            </div>
+                            Send Voucher<input name="vouch" id="vouch" value="" type="checkbox" style="height: 15px">
+                            <div class="form-group" id="vouch_section" style="display: none">
+                                <label for="email">Voucher Code</label>
+                                <input type="text" class="form-control" id="code" name="code" value=""
+                                    placeholder="Enter Voucher Code" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[type="checkbox"]').click(function () {
+            if ($(this).prop("checked") == true) {
+                $('#vouch_section').css('display', 'block');
+            } else if ($(this).prop("checked") == false) {
+                $('#vouch_section').css('display', 'none');
+            }
+        });
+        $(".erase").click(function(){
+            $(".pop-up").hide();
+        })
+    })
+</script>
+{% endblock %}

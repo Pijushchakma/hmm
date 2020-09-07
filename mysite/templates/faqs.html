@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}FAQs || NDF{% endblock %}</title>
+{% block content %}
+    <div class="header-height"></div>
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-content text-center">
+                <h2>FAQs</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'Index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">FAQs</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /Page Header -->
+    <section class="about-section bg-grey bd-bottom padding">
+        <div class="container">
+            <div class="tab-col col-lg-12 col-md-12 col-sm-12">
+                <div class="inner" style="position: relative; display: block;">
+                    <div class="accordion-box">
+                        <!--Block-->
+                        {% for faq in faqs %}
+                        <div class="accordion block" style="position: relative; margin-bottom: 15px;">
+                            <div class="acc-btn" style="position: relative; font-size: 16px; line-height: 28px; font-weight: 700; cursor: pointer; padding: 19px 50px 11px; border: 1px solid rgba(0,0,0,0.10); color: #222222; background-color: #ffffff; font-family: 'Manjari', sans-serif; transition: all 500ms ease;">{{faq.question}}<div class="fa fa-plus" style="position: absolute; right: 30px; top: 15px; font-size: 12px; font-weight: 700; color: #061138; height: 30px; line-height: 30px; transition: all 500ms ease;"></div></div>
+                            <div class="acc-content" style="display: none; position: relative; padding-left: 50px;">
+                                <div class="content" style="position: relative; padding: 28px 0px 0px;">
+                                    <div class="text" style="position: relative; display: block; font-size: 15px; line-height: 1.6em;">{{faq.answer}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /About Section -->
+
+{% endblock %}

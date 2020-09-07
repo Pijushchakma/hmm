@@ -1,0 +1,238 @@
+
+<style>
+    input#big {
+        width: 25px;
+        padding-top: 20px;
+      }
+      .item{
+          align-items: center;
+      }
+</style>{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Create Chapter || NDF{% endblock %}
+{% block content %}
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fa fa-plus-circle icon-gradient bg-plum-plate">
+                    </i>
+                </div>
+                <div>Create Chapter
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-card mb-3 card">
+        {% if messages  %}
+        {% for message in messages %}
+        <div class="card-body">
+            {{ message }}
+            <h5 class="card-title">Chapter Information Details</h5>
+            {% endfor %}
+            {% endif %}
+            <form id="chapterForm" class="col-md-10 mx-auto" method="post"
+                data-states-url="{% url 'ajax_load_states' %}" data-cities-url="{% url 'ajax_load_cities' %}"
+                enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="chaptername">Chapter Name</label>
+                    <div>
+                        <input type="text" class="form-control" id="chaptername" name="name" placeholder="Chapter Name"
+                            required="required" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Chapter Address</label>
+                    <div>
+                        <input type="text" class="form-control" id="address" name="address"
+                            placeholder="Chapter Address" required="required" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <div class="position-relative form-group">
+                            <label for="country">Country</label>
+                            <select class="custom-select" name="country" id="country" required>
+                                <option value="">Select Country</option>
+                                {% for country in countries %}
+                                <option value="hmm">Baaal</option>
+                                <option value="{{ country.id }}">{{ country.name }} </option>
+                                {% endfor %}
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="position-relative form-group">
+                            <label for="state">State</label>
+                            <select class="custom-select" name="state" id="state" required>
+                                <option value="">Select State</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="position-relative form-group" required>
+                            <label for="city">City</label>
+                            <select class="custom-select" name="city" id="city">
+                                <option value="">Select City</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="position-relative form-group">
+                            <label for="zip">Zip Code</label>
+                            <input name="zip_code" id="zip" type="text" class="form-control" placeholder="Zip Code"
+                                required="required">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="membership">Estimated Membership</label>
+                    <div>
+                        <input type="text" class="form-control" id="membership" name="estimated_membership"
+                            placeholder="Estimated Membership" required="required" />
+                    </div>
+                </div>
+                <h6 style="color: #00a859;font-weight:bold;">Chapter Executives (Kindly enter their emails respectively,
+                    though the fields are optional)</h6>
+                <div class="row">
+                    <div class="col-lg-4">
+
+                        <div class="form-group">
+                            <input type="checkbox" name="chapter_exe[]" value="President" id="check1" class="check1">
+                            President<br>
+                            <input type="text" id="text1" name="president" placeholder="Board Of Directors"
+                                class="form-control text1" disabled><br>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+
+                        <div class="form-group">
+                            <input type="checkbox" name="chapter_exe[]" id="check2" class="chk1" value="Secretary">
+                            Secretary<br>
+                            <input type="text" name="secretary" id="text2" placeholder="Board Of Directors"
+                                class="form-control" disabled><br>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+
+                        <div class="form-group">
+                            <input type="checkbox" name="chapter_exe[]" id="check3" class="chk2"
+                                value="Membership_Officer "> Membership Officer<br>
+                            <input type="text" name="membership_officer" id="text3" placeholder="Board Of Directors"
+                                class="form-control" disabled><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+
+                        <div class="form-group">
+                            <input type="checkbox" name="chapter_exe[]" id="check4" class="chk3" value="Treasurer">
+                            Treasurer<br>
+                            <input type="text" name="treasurer" id="text4" placeholder="Board Of Directors"
+                                class="form-control" disabled><br>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+
+                        <div class="form-group">
+                            <input type="checkbox" name="chapter_exe[]" id="check5" class="chk4"
+                                value="Program Officer"> Program Officer (Optional)<br>
+                            <input type="text" name="program_officer" id="text5" placeholder="Board Of Directors"
+                                class="form-control" disabled><br>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+
+                        <div class="form-group">
+                            <input type="checkbox" name="chapter_exe[]" id="check6" class="chk5" value="Vice President">
+                            Vice President (Optional)<br>
+                            <input type="text" name="vice_president" id="text6" placeholder="Board Of Directors"
+                                class="form-control" disabled><br>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <input type="checkbox" name="chapter_exe[]" id="check7" class="chk6" value="Legal Officer">
+                            Legal Officer (Optional)<br>
+                            <input type="text" name="legal_officer" id="text7" placeholder="Board Of Directors"
+                                class="form-control" disabled><br>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <input type="checkbox" name="chapter_exe[]" id="check8" class="chk7"
+                                value="Welfare Officer"> Welfare Officer<br>
+                            <input type="text" name="welfare_officer" id="text8" placeholder="Board Of Directors"
+                                class="form-control" disabled><br>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+                    <div class="item">
+                        <input type="checkbox" id="big" required>
+                         <label  class="dig">Please agree to our policy</label>
+                     </div>
+                    <!-- <div class="form-check checkbox">
+                        <label class="form-check-label"><input type="checkbox" id="agree" name="aggreeTerms"
+                                value="agree" class="form-check-input" required="required" />
+                            Please agree to our policy</label>
+                    </div> -->
+
+              
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#country").change(function () {
+        var url = $("#chapterForm").attr("data-states-url");
+        var countryId = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'country': countryId
+            },
+            success: function (data) {
+                $("#state").html(data);
+            }
+        });
+
+    });
+
+    $("#state").change(function () {
+        var url = $("#chapterForm").attr("data-cities-url");
+        var stateId = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'state': stateId
+            },
+            success: function (data) {
+                $("#city").html(data);
+            }
+        });
+
+    });
+</script>
+{% endblock %}

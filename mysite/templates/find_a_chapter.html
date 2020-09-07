@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Find A Chapter || NDF{% endblock %}
+{% block content %}
+    <div class="header-height"></div>
+            
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-title text-center">
+                <h2>FIND A CHAPTER</h2>
+            </div>
+                <div class="breadcrumb-area text-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item" {% if index_section %} class="active" {% endif %}><a href="{% url 'Index' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Find A Chapter</li>
+                    </ol>
+                </div>
+                
+            
+        </div>
+    </div><!-- /Page Header -->
+
+    <section class="about-section bg-grey bd-bottom padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="section-title text-center">
+                        <h2>Find A <span>Chapter</span> </h2>
+                        <center><img src="{% static 'mysite/img/title-bottom.png' %}" alt=""></center>
+                        <p>Every Nigerian where ever you may be on the surface of the earth should be concerned about the need to develop our nation and move Nigeria forward. In whatever capacity, you contributions is most welcome. Our mission is to build a better nation for generations to come, promote constructive Nigeria leadership and top down bad leadership in every area of our governance.</p>
+                        <p>We need you to build a New and Properous Nation</p>
+                        <p><a href="{% url 'Join NDF' %}" class="get-mem-link">We need your voice—become a member today</a></p>
+                    </div>
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Chapter Name</th>
+                                <th>Address</th>
+                                <th>State/Country</th>
+                                <th>City</th>
+                                <th>Zip Code</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for local in local_chapter %}
+                            <tr>
+                                <td>{{ local.name }}</td>
+                                <td>{{ local.address }}</td>
+                                <td>{{ local.state }}</td>
+                                <td>{{ local.city }}</td>
+                                <td>{{ local.zip_code }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Chapter Name</th>
+                                <th>Address</th>
+                                <th>State/Country</th>
+                                <th>City</th>
+                                <th>Zip Code</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section><!-- /About Section -->
+    <div class="container">
+        <div class="section-heading text-center mb-40">
+            <h2>Latest From <span style="color: #0aaaa0;">News</span></h2>
+            <center><img src="{% static 'mysite/img/title-bottom.png' %}" alt=""></center>
+        </div><!-- /Section Heading -->
+        <div id="event-carousel" class="events-wrap owl-Carousel">
+            {% for new in news %}
+            <div class="events-item">
+                
+                <div class="event-thumb">
+                    <img src="{{new.img.url}}" alt="events">
+                    <span>{{new.upload_date}}</span>
+                </div>
+                <div class="event-details">
+                    <div style="overflow: hidden;text-overflow: ellipsis;height: 198px;text-align:justify">
+                        <h3>{{new.title}}</h3>
+                    
+                        <p style="text-align: justify;">{{new.desc|safe}}</p>
+                    </div>
+                    
+                    <a href="/news_detail/{{new.id}}" class="default-btn">Read More</a>
+                </div>
+                
+            </div><!-- Event-1 -->
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+

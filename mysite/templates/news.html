@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}News || NDF{% endblock %}</title>
+{% block content %}
+    <div class="header-height"></div>
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-content text-center">
+                <h2>NEWS</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" {% if index_section %} class="active" {% endif %}><a href="{% url 'Index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">News</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /Page Header -->
+
+    <section class="events-section bg-grey bd-bottom padding">
+        <div class="container">
+            <div id="event-carousel" class="events-wrap owl-Carousel">
+                {% for new in news %}
+                <div class="events-item">
+                    
+                    <div class="event-thumb">
+                        <img src="{{new.img.url}}" alt="events">
+                        <span>{{new.upload_date}}</span>
+                    </div>
+                    <div class="event-details">
+                        <div style="overflow: hidden;text-overflow: ellipsis;height: 198px;text-align:justify">
+                            <h3>{{new.title}}</h3>
+                        
+                            <p style="text-align: justify;">{{new.desc|safe}}</p>
+                        </div>
+                        
+                        <a href="/news_detail/{{new.id}}" class="default-btn">Read More</a>
+                    </div>
+                    
+                </div><!-- Event-1 -->
+                {% endfor %}
+            </div>
+        </div>
+    </section><!-- Events Section -->
+
+{% endblock %}

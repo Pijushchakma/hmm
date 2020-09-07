@@ -1,0 +1,272 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Projects Support Fee || NDF{% endblock %}
+{% block content %}
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="fa fa-plus-circle icon-gradient bg-plum-plate">
+                        </i>
+                    </div>
+                    <div>Projects Support Fee
+                    </div>
+                </div>   
+            </div>
+        </div>
+
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <form action="{% url 'process_payment' %}" method="post">
+                    {% csrf_token %}
+                <h5 class="card-title" style="color: #ff0000;">Annual Membership Fees: ${{ fee }}</h5>
+                <h5 class="card-title">Membership</h5>
+                <p>Your Membership Available dated </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label style="font-weight:bold; font-size:16px;">Join Date</label>
+                        <input type="text" class="form-control" value="{{ st_mem }}" readonly="">
+                    </div>
+                    <div class="col-md-6">
+                        <label style="font-weight:bold; font-size:16px;">End Date</label>
+                        <input type="text" class="form-control" value="{{ end_mem }}" readonly="">
+                    </div>                    
+                </div>
+                <div class="form-group">
+                    <div class="form-check row">
+
+                        <input style="height: 20px;float: left" type="checkbox" id="agree" name="agree" value="agree" class="form-check-input" required="required"/><label class="form-check-label">Renew your NDF Membership</label>
+                    </div>
+                </div>
+                    <input type="text" value="Membership_renew" name="object_type" hidden>
+                    <input type="text" value="Stripe" id="payment_method" name="payment_method"  hidden>
+                    <input type="text" value="Renew Membership" id="type" name="type"  hidden>
+                    <input type="text" value="{{ fee }}" id="country" name="country"  hidden>
+                    <input type="text" value="1" id="quantity" name="quantity"  hidden>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group" id="payment-group">
+                                        <label for="name">Payment Method</label><br>
+                                        <!--<label class="checkbox-inline"><input style="height: 20px;float: left" type="radio" name="payment" value="Paypal" checked /> Paypal <img src="{% static 'mysite/img/paypal.png' %}" width="70px" alt="PayPal"></label><br>-->
+                                        <label class="checkbox-inline" style="margin-top:10px"><input style="height: 20px;float: left" type="radio" name="payment" id="stripe" value="Stripe" checked required /> Card <img src="{% static 'mysite/img/stripe.png' %}" width="150px" alt="Stripe | Credit Card Payments"></label><br>
+                                        <label class="checkbox-inline" style="margin-top:10px"><input style="height: 20px;float: left" type="radio" name="payment" id="voucher" value="Voucher" /> Use NDF Voucher</label>
+                                    </div>
+                                    <div class="form-group" id="voucher-payment" style="display: none">
+                                        <input type="text" class="form-control" name="voucher" placeholder="Enter Voucher Code" />
+                                    </div>
+                                </div>
+                            </div>
+                <div class="col-lg-12" style="text-align: center;">
+                    <input type="submit" value="Pay Now" class="btn btn-primary">
+                </div>
+                </form>
+                <hr>
+                <form  class="col-md-10 mx-auto" method="post" action="{% url 'process_payment' %}">
+                    {% csrf_token %}
+                    <h5 style="font-weight: bold;">Annual Projects Support Fees</h5>
+                    <div class="radio-toolbar">
+                        <input id="radio1" type="radio" value="24" name="radios" required="required">
+                        <label for="radio1">Basic ($24)</label>
+
+                        <input id="radio2" type="radio" value="48" name="radios" >
+                        <label for="radio2">Bronze ($48)</label>
+
+                        <input id="radio3" type="radio" value="120" name="radios" >
+                        <label for="radio3">Silver ($120)</label>
+
+                        <input id="radio4" type="radio" value="240" name="radios" >
+                        <label for="radio4">Gold ($240)</label>
+
+                        <input id="radio5" type="radio" value="600" name="radios" >
+                        <label for="radio5">Platinum ($600)</label>
+
+                        <input id="radio6" type="radio" value="1200" name="radios" >
+                        <label for="radio6">Diamond ($1200)</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <div class="position-relative form-group">
+                                <label for="country">Choose convenient payment method:</label>
+                                <select class="custom-select" name="country" id="country">
+                                    <option id="yearly" value="0.0">Yearly</option>
+                                    <option id="monthly" value="0.0">Monthly</option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-weight:bold; font-size:16px;">Start Date</label>
+                            <input type="text" class="form-control" value="{{ st_proj }}" readonly="">
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-weight:bold; font-size:16px;">End Date</label>
+                            <input type="text" class="form-control" value="{{ end_proj }}" readonly="">
+                        </div>                    
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check checkbox">
+                            <label class="form-check-label"><input style="height: 20px;float: left" type="checkbox" id="agree" name="agree" value="agree" class="form-check-input" />Upgrade Your Project Support Fees</label>
+                        </div>
+                    </div>
+                    <input type="text" value="no" id="upgrade" name="upgrade" hidden>
+                    <input type="text" value="Project_support" name="object_type" hidden>
+                        <input type="text" value="Stripe" id="payment_method1" name="payment_method"  hidden>
+                    <input type="text" value="Project Support fee" id="type" name="type"  hidden>
+                    <input type="text"  id="package" name="package"  hidden>
+
+                    <input type="text" value="1" id="quantity" name="quantity"  hidden>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group" id="payment-group">
+                                        <label for="name">Payment Method</label><br>
+                                        <!--<label class="checkbox-inline"><input style="height: 20px;float: left" type="radio" name="payment1" value="Paypal" checked /> Paypal <img src="{% static 'mysite/img/paypal.png' %}" width="70px" alt="PayPal"></label><br>-->
+                                        <label class="checkbox-inline" style="margin-top:10px"><input style="height: 20px;float: left" type="radio" name="payment1" id="stripe" value="Stripe" checked required /> Card <img src="{% static 'mysite/img/stripe.png' %}" width="150px" alt="Stripe | Credit Card Payments"></label><br>
+                                        <label class="checkbox-inline" style="margin-top:10px"><input style="height: 20px;float: left" type="radio" name="payment1" id="voucher" value="Voucher" /> Use NDF Voucher</label>
+                                    </div>
+                                    <div class="form-group" id="voucher-payment1" style="display: none">
+                                        <input type="text" class="form-control" name="voucher" placeholder="Enter Voucher Code" />
+                                    </div>
+                                </div>
+                            </div>
+                    
+                    <div class="col-lg-12" style="text-align: center;">
+                        <input type="submit" value="Pay Now" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            $('input:radio[name="payment"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'Voucher') {
+
+            $('#voucher-payment').css('display','block');
+            $("#payment_method").val("Voucher");
+        }
+    });
+            $('input:radio[name="payment"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'Stripe') {
+
+            $('#voucher-payment').css('display','none');
+            $("#payment_method").val("Stripe");
+        }
+    });
+            $('input:radio[name="payment"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'Paypal') {
+
+            $('#voucher-payment').css('display','none');
+            $("#payment_method").val("Paypal");
+        }
+    });
+
+             $('input:radio[name="payment1"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'Voucher') {
+
+            $('#voucher-payment1').css('display','block');
+            $("#payment_method1").val("Voucher");
+        }
+    });
+            $('input:radio[name="payment1"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'Stripe') {
+
+            $('#voucher-payment1').css('display','none');
+            $("#payment_method1").val("Stripe");
+        }
+    });
+            $('input:radio[name="payment1"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'Paypal') {
+
+            $('#voucher-payment1').css('display','none');
+            $("#payment_method1").val("Paypal");
+        }
+    });
+
+
+
+
+
+
+
+
+
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '24') {
+
+            $("#yearly").val("24");
+            $("#monthly").val("24");
+            $("#package").val("24");
+        }
+    });
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '48') {
+
+             $("#yearly").val("48");
+            $("#monthly").val("48");
+            $("#package").val("48");
+        }
+    });
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '120') {
+
+             $("#yearly").val("120");
+            $("#monthly").val("120");
+            $("#package").val("120");
+        }
+    });
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '240') {
+
+            $("#yearly").val("240");
+            $("#monthly").val("240");
+            $("#package").val("240");
+        }
+    });
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '600') {
+
+             $("#yearly").val("600");
+            $("#monthly").val("600");
+            $("#package").val("600");
+        }
+    });
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '1200') {
+
+            $("#yearly").val("1200");
+            $("#monthly").val("1200");
+            $("#package").val("1200");
+        }
+    });
+
+            $('input[type="checkbox"]'). click(function(){
+if($(this). prop("checked") == true && $(this).val() == 'agree'){
+$('#upgrade').val("yes");
+}
+else if($(this). prop("checked") == false){
+$('#upgrade').val("no");
+}
+
+
+});
+        });
+    </script>
+{% endblock %}

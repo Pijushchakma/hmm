@@ -1,0 +1,336 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Donation || NDF{% endblock %}
+{% block content %}
+    
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="fa fa-plus-circle icon-gradient bg-plum-plate">
+                        </i>
+                    </div>
+                    <div>Donation
+                    </div>
+                </div>   
+            </div>
+        </div> 
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Donate</h5>
+                <form id="myForm" class="col-md-10 mx-auto" method="post" action="{% url 'process_payment' %}">
+                    {% csrf_token %}
+                    <h6 style="font-weight: bold;">Select the amount you wish to donate or enter your amount in the Enter Donation field.</h6>
+                    <input type="text" value="Donation" name="object_type" hidden>
+                    <input type="text" id="quantity" name="quantity" value="1" hidden>
+                    <input type="text" id="type" name="type" value="" hidden>
+                    <input type="text" value="Stripe" id="payment_method" name="payment_method"  hidden>
+                    <div class="radio-toolbar">
+                        <input id="radio1" value="25" type="radio" name="radios" >
+                        <label for="radio1">$25</label>
+
+                        <input id="radio2" value="100" type="radio" name="radios" >
+                        <label for="radio2">$100</label>
+
+                        <input id="radio3" value="250" type="radio" name="radios" >
+                        <label for="radio3">$250</label>
+
+                        <input id="radio4" value="500" type="radio" name="radios" >
+                        <label for="radio4">$500</label>
+
+                        <input id="radio5" value="1000" type="radio" name="radios" >
+                        <label for="radio5">$1000</label>
+
+                        <input id="radio6" value="5000" type="radio" name="radios" >
+                        <label for="radio6">$5000</label>
+
+                        <input id="radio7" value="10000" type="radio" name="radios" >
+                        <label for="radio7">$10000</label>
+
+                        <br />
+                        $
+                        <label for="radio8" style="width: 50%; padding: 5px;">
+                            <input id="custom-amount" type="text" class="form-control inputtext" name="country" placeholder="Enter donation" required="required">
+                        </label>  
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-4" style="margin-bottom: 10px;" >
+                            <div class="form-group">
+                                <input type="checkbox" name="" required="required">
+                                <label for="name" class="lbldesign">Make this contribution:*</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" style="margin-bottom: 10px;">
+                            <select name="frequency" class="form-control">
+                                <option value="-1">- Frequency -</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="quarterly">Quarterly</option>
+                                <option value="twice a year">Twice a Year</option>
+                                <option value="yearly">Yearly</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4" style="margin-bottom: 10px;">
+                            <select name="duration" class="form-control">
+                                <option value="-1">- Duration -</option>
+                                <option value="end of year">Until End of Year</option>
+                                <option value="contact you">Until I Contact You</option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <input type="checkbox" name="dedicate">
+                        <label for="name" class="lbldesign"> I'd like to dedicate my gift to someone special</label>
+                    </div>
+                    <hr>
+                    <h3><b>Billing Information</b></h3>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="name">First Name</label>
+                                <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Enter First Name" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="name">Last Name</label>
+                                <input type="text" id="lname" name="lname" class="form-control" placeholder="Enter Last Name" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="name">Street Address (Required)</label>
+                                <input type="text" id="address1" name="address1" class="form-control" placeholder="Enter Address1" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="name">Street Address (Optional)</label>
+                                <input type="text" id="address2" class="form-control" placeholder="Enter Address2" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="name">Postal Code </label>
+                                <input type="text" id="postal_code" name="postal_code" class="form-control" placeholder="Enter Postal Code" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4" style="margin-bottom: 10px;">
+                            <label for="country">Country</label>
+                            <select name="res_country"  class="form-control">
+                                <option value="">Select Country</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4" style="margin-bottom: 10px;">
+                            <label for="state">State / Province</label>
+                            <select name="state" class="form-control">
+                                <option value="">Select State</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4" style="margin-bottom: 10px;">
+                            <label for="city">City</label>
+                            <select name="city" class="form-control">
+                                <option value="-1">Select City</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label for="name">Email</label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" required="required">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group" id="payment-group">
+                                        <label for="name">Payment Method</label><br>
+                                        <!--<label class="checkbox-inline"><input style="height: 20px;float: left" type="radio" name="payment" value="Paypal" checked /> Paypal <img src="{% static 'mysite/img/paypal.png' %}" width="70px" alt="PayPal"></label><br>-->
+                                        <label class="checkbox-inline" style="margin-top:10px"><input style="height: 20px;float: left" type="radio" name="payment" id="stripe" value="Stripe" checked required /> Card <img src="{% static 'mysite/img/stripe.png' %}" width="150px" alt="Stripe | Credit Card Payments"></label><br>
+                                        <label class="checkbox-inline" style="margin-top:10px"><input style="height: 20px;float: left" type="radio" name="payment" id="voucher" value="Voucher" /> Use NDF Voucher</label>
+                                    </div>
+                                    <div class="form-group" id="voucher-payment" style="display: none">
+                                        <input type="text" class="form-control" name="voucher" placeholder="Enter Voucher Code" />
+                                    </div>
+                                </div>
+                            </div>
+                    <br>
+
+      <div id="example1"></div>
+      <br>
+{#      <input type="submit" value="getResponse">#}
+
+    <br>
+                    <div class="row">
+                        <div class="col-lg-12" style="text-align: center; padding: 10px;">
+                            <input type="submit" value="Submit" class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>Your donation is non-refundable and not transferrable. A receipt will be sent to the email address you provided.</p>
+                        <p>Are you having problems donating? <a href="{% url 'Contact Us' %}">Contact us.</a></p>
+                        <p>If you would prefer to donate by cheaque, please send to:</p>
+                        <p><b>8745 W Higgins Road,</b></p>
+                        <p><b>Suite 110 Chicago</b></p>
+                        <p><b>60631</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+ doSubmit = false;
+      var verifyCallback = function(response) {
+
+        if (response === grecaptcha.getResponse()) {
+        doSubmit = true;
+    }
+        //alert(doSubmit);
+      };
+      var widgetId1;
+      var widgetId2;
+      var onloadCallback = function() {
+        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+        widgetId1 = grecaptcha.render('example1', {
+          'sitekey' : '6LdXZrkZAAAAAKJrnvYStwEm-6tn6eQpdWFeQWub',
+          'theme' : 'light',
+            'callback' : verifyCallback,
+        });
+        widgetId2 = grecaptcha.render(document.getElementById('example2'), {
+          'sitekey' : '6LdXZrkZAAAAAKJrnvYStwEm-6tn6eQpdWFeQWub'
+        });
+        grecaptcha.render('example3', {
+          'sitekey' : '6LdXZrkZAAAAAKJrnvYStwEm-6tn6eQpdWFeQWub',
+          'callback' : verifyCallback,
+          'theme' : 'dark'
+        });
+      };
+
+      document.getElementById("myForm").addEventListener('submit',function(e){
+          e.preventDefault()
+    if (doSubmit) {
+        /* submit form or do something else */
+        document.getElementById("myForm").submit();
+    }
+    else{
+
+        alert("Check the Captcha first");
+
+    }
+});
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function () {
+         $('input:radio[name="payment"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'Voucher') {
+
+            $('#voucher-payment').css('display','block');
+            $("#payment_method").val("Voucher");
+        }
+    });
+            $('input:radio[name="payment"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'Stripe') {
+
+            $('#voucher-payment').css('display','none');
+            $("#payment_method").val("Stripe");
+        }
+    });
+            $('input:radio[name="payment"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'Paypal') {
+
+            $('#voucher-payment').css('display','none');
+            $("#payment_method").val("Paypal");
+        }
+    });
+
+
+
+
+    $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '25') {
+
+            $("#custom-amount").val("25");
+            $("#type").val("25");
+
+        }
+    });
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '100') {
+
+            $("#custom-amount").val("100");
+            $("#type").val("100");
+
+        }
+    });
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '250') {
+
+            $("#custom-amount").val("250");
+            $("#type").val("250");
+
+        }
+    });
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '500') {
+
+            $("#custom-amount").val("500");
+            $("#type").val("500");
+
+        }
+    });
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '1000') {
+
+            $("#custom-amount").val("1000");
+            $("#type").val("1000");
+
+        }
+    });
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '5000') {
+
+            $("#custom-amount").val("5000");
+            $("#type").val("5000");
+
+        }
+    });
+
+            $('input:radio[name="radios"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '10000') {
+
+            $("#custom-amount").val("10000");
+            $("#type").val("10000");
+
+        }
+    });
+$("#custom-amount").on('keyup',function () {
+    $("#type").val($("#custom-amount").val());
+});
+
+        });
+    </script>
+{% endblock %}

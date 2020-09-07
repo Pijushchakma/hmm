@@ -1,0 +1,52 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Endorse Member || NDF{% endblock %}
+{% block content %}
+{% if msg == 'sent'  %}
+
+<script>
+   
+      Swal.fire("Member is Successfully Endorsed!");
+</script>
+
+    {%  endif %}
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="fa fa-plus-circle icon-gradient bg-plum-plate">
+                        </i>
+                    </div>
+                    <div>Endorse Members
+                    </div>
+                </div>   
+            </div>
+        </div>            
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Endorse Members</h5>
+                <form id="signupForm" class="col-md-10 mx-auto" method="post" action="{% url 'endorse_member' %}">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="email">Email ID</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email ID" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary float-right" name="submit" value="submit">Submit</button>
+                    </div>
+                </form>
+
+                <h5>My Endorsements: </h5>
+                {% for endor in myendorsements %}
+                    <P>{{ endor }}</P>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

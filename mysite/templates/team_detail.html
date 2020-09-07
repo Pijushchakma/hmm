@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}Team Member Detail || NDF{% endblock %}</title>
+{% block content %}
+    <div class="header-height"></div>
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-content">
+                <h2>Team Detail</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">{{object.firstname}} {{object.lastname}} Detail</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /Page Header -->
+
+    <section class="about-section bg-grey bd-bottom padding">
+        <div class="container">
+            <div class="row about-wrap">
+                <div class="col-md-6 xs-padding">
+                    <div class="about-image">
+                        <img src="{{object.img.url}}" alt="about image">
+                    </div>
+                </div>
+                <div class="col-md-6 xs-padding">
+                    <div class="about-content">
+                        <h2>{{object.firstname}} {{object.lastname}}</h2>
+                        <p>{{object.designation}}</p>
+                        <p>
+                            <a href="{{object.fb}}"><i class="fa fa-facebook"></i></a>
+                            <a href="{{object.tw}}"><i class="fa fa-twitter"></i></a>
+                            <a href="{{object.go}}"><i class="fa fa-google"></i></a>
+                        </p>
+                        <p style="text-align: justify;">{{object.bio}}</p>
+                        <a href="{% url 'Teams' %}" class="default-btn">Back to Teams</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /About Section -->
+
+    
+
+    <a data-scroll href="#header" id="scroll-to-top"><i class="arrow_up"></i></a>
+{% endblock %}

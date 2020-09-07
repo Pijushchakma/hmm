@@ -1,0 +1,54 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Purchase Vouchers || NDF{% endblock %}
+
+
+
+{% block content %}
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="fa fa-money icon-gradient bg-plum-plate">
+                        </i>
+                    </div>
+                    <div>Payment Methods
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="container">
+    <div class="card">
+
+        <div class="card-body">
+            <div class="row">
+                <!--<div class="col-6 text-center">-->
+                <!--    <h4>Pay with PayPal</h4>-->
+                <!--        {{ form.render }}-->
+                <!--</div>-->
+                <div class="col-12 text-center">
+                    <form action="{% url 'charge' %}" method="post">
+  {% csrf_token %}
+ <h4>Pay with Stripe</h4>
+    <input value="{{ quantity }}" hidden name="quantity">
+    <input value="{{ stripe_amount }}" hidden name="amount">
+    <input value="{{ voucher_type }}" hidden name="voucher_type">
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="{{ stripe_key }}"
+    data-description="{{ voucher_type }}"
+    data-amount="{{ stripe_amount }}"
+    data-locale="auto">
+</script>
+</form>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}Professional Group Detail || NDF{% endblock %}</title>
+{% block content %}
+    <div class="header-height"></div>
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-content">
+                <h2>Professional Group Detail</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'Index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">{{object.title}} Professional Group Detail</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /Page Header -->
+
+    <section class="about-section bg-grey bd-bottom padding">
+        <div class="container">
+            <div class="row about-wrap">
+                <div class="col-md-12 xs-padding">
+                    <div class="about-image" style="float: left; padding-right: 20px; padding-bottom: 20px;">
+                        <img src="{{object.img.url}}" alt="about image">
+                    </div>
+                
+                    <div class="about-content">
+                        <h3>Group Name: {{object.name}}</h3>
+                        <h4 style="text-align:justify; font-size:18px;">Objective: {{object.objective|safe}}</h4>
+                        <h4 style="text-align:justify; font-size:18px;">Group Project: {{object.project|safe}}</h4>
+                        <div style="margin-bottom: 20px;">
+                        	<span style="color: #333; font-size: 14px; margin-right: 30px;">
+                        		<i class="fa fa-user" style="color: #0aaaa0; margin-right: 11px;"></i>
+                        		Chairman: {{object.chairman}}
+                        	</span>
+                        	<span style="color: #333; font-size: 14px; margin-right: 30px;">
+                        		<i class="fa fa-user" style="color: #0aaaa0; margin-right: 11px;"></i>
+                        		Chairman: {{object.vice_chairman}}
+                        	</span>
+                        	<span style="color: #333; font-size: 14px; margin-right: 30px;">
+                        		<i class="fa fa-user" style="color: #0aaaa0; margin-right: 11px;"></i>
+                        		Chairman: {{object.secretary}}
+                        	</span>
+                        </div>
+                        <p style="text-align: justify;">{{object.desc|safe}}</p>
+                        <a href="{% url 'Professional Groups' %}" class="default-btn">Back to Professional Groups</a>
+                        <a href="#" class="default-btn">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /About Section -->
+
+{% endblock %}

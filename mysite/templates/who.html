@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Who We Are || NDF{% endblock %}
+{% block content %}
+    <div class="header-height"></div>
+            
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-title text-center">
+                <h2>WHO WE ARE?</h2>
+            </div>
+                <div class="breadcrumb-area text-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item" {% if index_section %} class="active" {% endif %}><a href="{% url 'Index' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Who We Are</li>
+                    </ol>
+                </div>
+                
+            
+        </div>
+    </div><!-- /Page Header -->
+
+    <section class="about-section bg-grey bd-bottom padding">
+        <div class="container">
+            <div class="row about-wrap">
+                <div class="col-md-6 xs-padding text-justify">
+                    <div class="about-image">
+                        <img src="{% static 'mysite/img/ndf_who.jpg' %}" alt="about image">
+                    </div>
+                    <p>NDF is a non-political and non-governmental Nigerian global organization, whose membership is open to all Nigerians aged 18 and above, within and outside Nigeria, and who have an unrivaled determination to join hands in creating a new and prosperous Nigeria where meritocracy and hard work are rewarded.</p>
+                    <p>We operate as a nation builder and good governance advocate. Our main objectives are:</p>
+                    <p>1. To promote the global unification of Nigerians irrespective of location, tribe or religious affiliation with the sole aim of working collaboratively to create a new Nigeria.</p>
+                    <p>2. To establish, promote and advocate for substantial investment in quality educational services as a means of poverty eradication, as well as political, social and economic advancement.</p>
+                </div>
+                <div class="col-md-6 xs-padding">
+                    <div class="about-content text-justify">
+                        <p>3. To promote, fund, and raise awareness for the establishment of <b>Medical Village</b> – a world class medical center to cater for the medical needs of the populace with the support and input from Nigerians medical personnel including Doctors, Pharmacists, Nurses, world-wide</p>
+                        <p>4. To create, monitor and fund an independent performance assessment platform for the monitoring of projects being executed at national, state and local government levels.</p>
+                        <p>5.  To create and support a platform where Nigerian citizens can raise genuine petitions to demand for improved social amenities, social justice, good governance, fairness, rule of law, and accountability. </p>
+                        <p>6. To create and support platform that we enable Nigerians to commend leaders and individuals that are making positive impacts within their communities and the nation at large. Similarly, organizations and government agencies at the local, State and federal levels that are responding actively to yearning and aspirations of the people the demand of the people.</p>
+                        <p>7. To create and fund online and classroom-based learning platforms for the acquisition of knowledge and skills necessary for national development.</p>
+                        <p>8. To create and support a platform that will enable every Nigerian citizen to participate in electioneering monitoring process for the purposes of electing genuine leaders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /About Section -->
+
+{% endblock %}

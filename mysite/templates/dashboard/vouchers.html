@@ -1,0 +1,149 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Purchase Vouchers || NDF{% endblock %}
+{% block content %}
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="fa fa-plus-circle icon-gradient bg-plum-plate">
+                        </i>
+                    </div>
+                    <div>Purchase Vouchers
+                    </div>
+                </div>   
+            </div>
+        </div>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item"><a data-toggle="tab" style="font-size: 18px; color: #1c7430 " class="nav-link active " href="#im1">Country Voucher</a></li>
+  <li class="nav-item"><a data-toggle="tab" class="nav-link " style="font-size: 18px;color: #1c7430" href="#im2">General Voucher</a></li>
+
+</ul>
+    <div class="tab-content">
+  <div id="im1" class="tab-pane  in active">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+            <form method="post" action="{% url 'process_payment' %}">
+            {% csrf_token %}
+            <input value="CountryVoucher" name="type" hidden>
+            <input value="Not" name="payment_method" hidden>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label style="font-weight:bold; font-size:16px;">Country</label>
+                        <select class="custom-select" name="country" id="country" required>
+                            <option value="">Select Country</option>
+                            {% for country in countries %}
+                                <option value="{{ country.fee }}">{{ country.country }} - {{ country.fee }} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label style="font-weight:bold; font-size:16px;">Quantity</label>
+{#                        <select class="custom-select" name="quantity" id="quantity">#}
+{#                            <option value="">1</option>#}
+{#                        </select>#}
+                         <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Select Quantity" required>
+
+                    </div>
+                </div>
+                <div class="col-lg-12" style="padding: 10px;">
+                    <input type="submit" value="Pay Now" class="btn btn-primary">
+
+                </div>
+            </form>
+                <hr>
+                <div class="col-lg-12">
+                    <h5 style="font-weight: bold;">My Vouchers</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Voucher</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Purchase Time</th>
+                                <th>Used Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for voucher in c_vouchers %}
+                            <tr>
+                            <td>{{ voucher.voucher_code }}</td>
+                            <td>{{ voucher.amount }}</td>
+                            <td>{{ voucher.status }}</td>
+                            <td>{{ voucher.purchase_time }}</td>
+                            <td>{{ voucher.used_time }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+  </div>
+
+
+  <div id="im2" class="tab-pane fade ">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <form method="post" action="{% url 'process_payment' %}">
+                    {% csrf_token %}
+                    <input value="GeneralVoucher" name="type" hidden>
+                    <input value="Not" name="payment_method" hidden>
+                    <input type="hidden" name="charset" value="utf-8">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label style="font-weight:bold; font-size:16px;">Voucher Amount</label>
+                        <input type="number" step="any" class="form-control" name="country" id="country" placeholder="Enter Voucher Amount" required>
+
+
+                    </div>
+                    <div class="col-md-6">
+                        <label style="font-weight:bold; font-size:16px;">Quantity</label>
+                        <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Select Quantity" required>
+
+                    </div>
+                     </div>
+                <div class="col-lg-12" style="padding: 10px;">
+                    <input type="submit" value="Pay Now" class="btn btn-primary">
+
+                </div>
+                </form>
+                <hr>
+                <div class="col-lg-12">
+                    <h5 style="font-weight: bold;">My Vouchers</h5>
+                    <table class="table">
+                         <thead>
+                            <tr>
+                                <th>Voucher</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Purchase Time</th>
+                                <th>Used Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for voucher in g_vouchers %}
+                            <tr>
+                            <td>{{ voucher.voucher_code }}</td>
+                            <td>{{ voucher.amount }}</td>
+                            <td>{{ voucher.status }}</td>
+                            <td>{{ voucher.purchase_time }}</td>
+                            <td>{{ voucher.used_time }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+  </div>
+
+
+
+    </div>
+    </div>
+{% endblock %}

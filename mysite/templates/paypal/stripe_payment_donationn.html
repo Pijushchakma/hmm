@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+        <meta name="author" content="WowThemez">
+
+        <title>{% block title %}Purchase Membership || NDF{% endblock %}</title>
+
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'mysite/img/ndm.png' %}">
+
+        <!-- Font Awesome Icons CSS -->
+        <link rel="stylesheet" href="{% static 'mysite/css/font-awesome.min.css' %}">
+        <!-- Themify Icons CSS -->
+
+        <link rel="stylesheet" href="{% static 'mysite/css/themify-icons.css' %}">
+        <!-- Elegant Font Icons CSS -->
+        <link rel="stylesheet" href="{% static 'mysite/css/elegant-font-icons.css' %}">
+        <!-- Elegant Line Icons CSS -->
+        <link rel="stylesheet" href="{% static 'mysite/css/elegant-line-icons.css' %}">
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'mysite/css/bootstrap.min.css' %}">
+		<!-- Venobox CSS -->
+        <link rel="stylesheet" href="{% static 'mysite/css/venobox/venobox.css' %}">
+		<!-- OWL-Carousel CSS -->
+        <link rel="stylesheet" href="{% static 'mysite/css/owl.carousel.css' %}">
+        <!-- Slick Nav CSS -->
+        <link rel="stylesheet" href="{% static 'mysite/css/slicknav.min.css' %}">
+        <!-- Css Animation CSS -->
+        <link rel="stylesheet" href="{% static 'mysite/css/css-animation.min.css' %}">
+        <!-- Nivo Slider CSS -->
+        <link rel="stylesheet" href="{% static 'mysite/css/nivo-slider.css' %}">
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="{% static 'mysite/css/main.css' %}">
+		<!-- Responsive CSS -->
+        <link rel="stylesheet" href="{% static 'mysite/css/responsive.css' %}">
+
+
+    </head>
+    <body>
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+
+                </div>
+            </div>
+        </div>
+    <div class="container">
+    <div class="card">
+
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-12 text-center">
+                    <form action="{% url 'charge_donationn' %}" method="post">
+  {% csrf_token %}
+ <h4>Pay with Stripe</h4>
+    <input value="{{ quantity }}" hidden name="quantity">
+    <input value="{{ total_amount }}" hidden name="amount">
+    <input value="{{ voucher_type }}" hidden name="voucher_type">
+                        <input value="{{ context.res_country }}" hidden name="res_country">
+                        <input value="{{ context.email }}" hidden name="email">
+                        <input value="{{ context.first_name }}" hidden name="first_name">
+                        <input value="{{ context.last_name }}" hidden name="last_name">
+                        <input value="{{ context.postal_code }}" hidden name="postal_code">
+                        <input value="{{ context.frequency }}" hidden name="frequency">
+                        <input value="{{ context.duration }}" hidden name="duration">
+                        <input value="{{ context.address }}" hidden name="address">
+                        <input value="{{ context.city }}" hidden name="city">
+                        <input value="{{ context.state }}" hidden name="state">
+
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="{{ stripe_key }}"
+    data-description="{{ voucher_type }}"
+    data-amount="{{ total_amount }}"
+    data-locale="auto">
+</script>
+</form>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>
